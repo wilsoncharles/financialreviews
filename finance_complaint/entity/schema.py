@@ -1,8 +1,8 @@
 from typing import List
 from finance_complaint.exception import FinanceException
 import os,sys
-from pyspark.sql.types import StructType, StructField
-from typing import directory
+from pyspark.sql.types import TimestampType, StringType, FloatType, StructType
+from typing import Dict 
 
 class FinanceDataSchema:
 

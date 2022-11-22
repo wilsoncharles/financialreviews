@@ -24,7 +24,7 @@ class DataValidation(FinanceDataSchema):
     def __init__(self,
                  data_validation_config : DataValidationConfig,
                  data_ingestion_artifact : DataIngestionArtifact,
-                 table_name : COMPLAINT_TABLE,
+                 table_name = COMPLAINT_TABLE,
                  schema = FinanceDataSchema()):
         try:
             super().__init__()
@@ -55,7 +55,7 @@ class DataValidation(FinanceDataSchema):
             logger.info(f"Preparing missing report for each column")
             number_of_row = dataframe.count()
 
-            for column in dataframe.columns():
+            for column in dataframe.columns:
                 missing_row = dataframe.filter(f"{column} is null").count()
                 missing_percentage = (missing_row*100)/number_of_row
                 missing_report[column] = MissingReport(total_row= number_of_row,
@@ -142,7 +142,7 @@ class DataValidation(FinanceDataSchema):
             self.is_required_columns_exist(dataframe = dataframe)
 
             print(f"Row: [{dataframe.count()}] Column: [{len(dataframe.columns)}]")
-            print(f"Expected Column: {self.schema.required_columns}\nPresent Columns: {dataframe.columns}")
+            print(f"Expected Column: {self.schema.required_columns}\n Altogether Present Columns: {dataframe.columns}")
 
             os.makedirs(self.data_validation_config.accepted_data_dir, exist_ok=True)
             accepted_file_path = os.path.join(self.data_validation_config.accepted_data_dir,
@@ -158,5 +158,5 @@ class DataValidation(FinanceDataSchema):
 
 
 
-         except Exception as e:
+        except Exception as e:
             raise FinanceException(e, sys)

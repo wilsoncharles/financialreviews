@@ -11,3 +11,5 @@ DataIngestionConfig = namedtuple("DataIngestionConfig", ["from_date",
                                                          "failed_dir",
                                                          "metadata_file_path",
                                                          "datasource_url"])
+
+DataValidationConfig = namedtuple('DataValidationConfig',['accepted_data_dir','rejected_data_dir','file_name'])

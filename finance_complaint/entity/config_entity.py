@@ -10,4 +10,4 @@ DataIngestionConfig = namedtuple("DataIngestionConfig", ["from_date",
                                                          "feature_store_dir",
                                                          "failed_dir",
                                                          "metadata_file_path",
-                                                         "data_source_url"])
+                                                         "datasource_url"])

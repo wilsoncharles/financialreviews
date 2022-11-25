@@ -1,8 +1,11 @@
 from typing import List
+from pyspark.sql.types import TimestampType, StringType, FloatType, StructType, StructField
 from finance_complaint.exception import FinanceException
-import os,sys
-from pyspark.sql.types import TimestampType, StringType, FloatType, StructType
-from typing import Dict 
+import os, sys
+
+from pyspark.sql import DataFrame
+from typing import Dict
+
 
 class FinanceDataSchema:
 
@@ -25,9 +28,8 @@ class FinanceDataSchema:
         self.col_complaint_what_happened: str = "complaint_what_happened"
         self.col_company_public_response: str = "company_public_response"
 
-
     @property
-    def dataframe_schema(self)->StructType:
+    def dataframe_schema(self) -> StructType:
         try:
             schema = StructType([
                 StructField(self.col_company_response, StringType()),
@@ -44,11 +46,10 @@ class FinanceDataSchema:
                 StructField(self.col_consumer_disputed, StringType()),
 
             ])
-
             return schema
-        
+
         except Exception as e:
-            raise FinanceException(e,sys)
+            raise FinanceException(e, sys) from e
 
     @property
     def target_column(self) -> str:
@@ -127,6 +128,8 @@ class FinanceDataSchema:
                    [self.col_date_sent_to_company, self.col_date_received]
         return features
 
+
+
     @property
     def unwanted_columns(self) -> List[str]:
         features = [
@@ -154,4 +157,3 @@ class FinanceDataSchema:
     @property
     def prediction_label_column_name(self) -> str:
         return f"{self.prediction_column_name}_{self.target_column}"
-    

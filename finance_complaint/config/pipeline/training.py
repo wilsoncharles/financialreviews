@@ -139,7 +139,7 @@ class FinanceConfig:
         except Exception as e:
             raise FinanceException(e, sys)
 
-     def get_model_trainer_config(self) -> ModelTrainerConfig:
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
         try:
             model_trainer_dir = os.path.join(self.pipeline_config.artifact_dir,
                                              MODEL_TRAINER_DIR, self.timestamp)

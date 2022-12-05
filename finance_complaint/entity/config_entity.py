@@ -18,3 +18,6 @@ DataTransformationConfig = namedtuple('DataTransformationConfig', ['file_name','
 
 ModelTrainerConfig = namedtuple("ModelTrainerConfig", ["base_accuracy", "trained_model_file_path", "metric_list",
                                                        'label_indexer_model_dir', ])
+
+ModelEvaluationConfig = namedtuple("ModelEvaluationConfig",
+                                   ["model_evaluation_report_file_path","threshold","metric_list","model_dir","bucket_name"])

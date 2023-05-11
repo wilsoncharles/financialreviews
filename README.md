@@ -1,3 +1,1 @@
 # financialreviews
-
-# Direct from lab
